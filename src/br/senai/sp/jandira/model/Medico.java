@@ -8,6 +8,7 @@ public class Medico {
 	private String email;
 	private String crm;
 	
+	
 	// CRIAÇÃO DOS MÉTODOS DA CLASSE MÉDICO \\
 
 	public void setNome(String nome) {
