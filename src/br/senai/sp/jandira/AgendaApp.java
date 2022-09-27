@@ -93,7 +93,7 @@ public class AgendaApp {
 		PlanoDeSaude planoDeSaude2 = new PlanoDeSaude();
 		planoDeSaude2.setOperadora("Porto Seguro");
 		planoDeSaude2.setCategoria("Premium");
-		planoDeSaude2.setNumero("21848-554");
+		planoDeSaude2.setNumero("68548-854");
 		planoDeSaude2.setValidade(LocalDate.of(2024, 8, 31));
 
 		Paciente paciente1 = new Paciente();
