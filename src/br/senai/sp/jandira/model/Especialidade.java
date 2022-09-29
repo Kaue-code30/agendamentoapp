@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Especialidade {
     
+    private static int contador;
     private Integer codigo;
     private String nome;
     private String descricao;
@@ -11,16 +12,19 @@ public class Especialidade {
     // Construtor de classes \\
     public Especialidade(String nome) {
         this.nome = nome;
+        this.contador++;
 
     }
 
     public Especialidade() {
+        this.contador++;
 
     }
 
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
+         this.contador++;
 
     }
 
@@ -50,5 +54,11 @@ public class Especialidade {
     public String getDescricao() {
         return descricao;
     }
+
+    public static int getContador() {
+        return contador;
+    }
+    
+    
 
 }

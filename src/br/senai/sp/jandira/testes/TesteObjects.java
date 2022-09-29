@@ -61,9 +61,8 @@ public class TesteObjects {
 		
 		AgendaApp.main(args);
 		
-		System.out.println("-------------------"+PlanoDeSaude.getQuantidade());
+		System.out.println("------------>" + e1.getContador());
 		
-		
-
+		          
 	}
 }
