@@ -13,11 +13,13 @@ public class Especialidade {
     public Especialidade(String nome) {
         this.nome = nome;
         this.contador++;
+        this.codigo = contador;
 
     }
 
     public Especialidade() {
         this.contador++;
+        this.codigo = contador;
 
     }
 
@@ -25,6 +27,7 @@ public class Especialidade {
         this.nome = nome;
         this.descricao = descricao;
          this.contador++;
+         this.codigo = contador;
 
     }
 
@@ -58,6 +61,11 @@ public class Especialidade {
     public static int getContador() {
         return contador;
     }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+    
     
     
 

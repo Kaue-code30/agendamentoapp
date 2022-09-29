@@ -60,8 +60,15 @@ public class TesteObjects {
 		
 		
 		AgendaApp.main(args);
+                Especialidade e4 = new Especialidade("Indo99cno");
+                Especialidade e5 = new Especialidade("Indocn665o");
 		
-		System.out.println("------------>" + e1.getContador());
+		System.out.println(e1.getCodigo() + " ------------> " + e1.getNome());
+		System.out.println(e5.getCodigo() + " ------------> " + e5.getNome());
+		System.out.println(e4.getCodigo() + " ------------> " + e4.getNome());
+		
+		
+                
 		
 		          
 	}
