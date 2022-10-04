@@ -6,7 +6,7 @@ import br.senai.sp.jandira.AgendaApp;
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoDeSaude;
-import javax.swing.JOptionPane;
+
 
 public class TesteObjects {
 
@@ -63,6 +63,7 @@ public class TesteObjects {
 		
 		AgendaApp.main(args);
                 Especialidade e4 = new Especialidade("Acupuntu");
+                e4.setNome("Acunputura");
                 e4.setDescricao("A acupuntura é uma terapia feita com agulhas inseridas em pontos específicos do corpo.");
                 Especialidade e5 = new Especialidade("Indocn665o");
                 
@@ -70,10 +71,11 @@ public class TesteObjects {
                 EspecialidadeDAO.gravar(e2);
                 EspecialidadeDAO.gravar(e3);
                 EspecialidadeDAO.gravar(e4);
-              
+                
+                
+                             
                 
              
-                EspecialidadeDAO.excluir(102);
                 
                 
                 
