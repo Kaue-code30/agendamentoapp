@@ -47,10 +47,10 @@ public class TesteWrappers {
 		especialidades.get(1).setNome("KAue");
 //		System.out.println(especialidades.get(1).getNome());
 
-		Especialidade xy = new Especialidade("Kaue", "Silva de Lima");
-		System.out.println(xy.getNome());
-
-		System.out.println(especialidades.get(2).getNome());
+//		Especialidade xy = new Especialidade("Kaue", "Silva de Lima");
+//		System.out.println(xy.getNome());
+//
+//		System.out.println(especialidades.get(2).getNome());
 
 //		Especialidade[] especialidades = {e1, e2, e3, e4};
 

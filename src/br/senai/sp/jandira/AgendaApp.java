@@ -141,13 +141,13 @@ public class AgendaApp {
 		agenda.setEspecialidade(especialidade4);
 		agenda.getPaciente().getPlanoDeSaude();
 
-		System.out.println("AGENDA");
-		System.out.println("Nome do paciente: "+ agenda.getPaciente().getNome());
-		System.out.println("Data da consulta: "+ agenda.getDataDaConsuta());
-		System.out.println("Hora da consulta: "+ agenda.getHoraDaConsulta());
-		System.out.println("Médico(a): "+ agenda.getMedico().getNome());
-		System.out.println("Tipo da consulta: "+agenda.getEspecialidade().getNome());
-		System.out.println("Plano de Saúde: "+ agenda.getPaciente().getPlanoDeSaude().getOperadora() );
+//		System.out.println("AGENDA");
+//		System.out.println("Nome do paciente: "+ agenda.getPaciente().getNome());
+//		System.out.println("Data da consulta: "+ agenda.getDataDaConsuta());
+//		System.out.println("Hora da consulta: "+ agenda.getHoraDaConsulta());
+//		System.out.println("Médico(a): "+ agenda.getMedico().getNome());
+//		System.out.println("Tipo da consulta: "+agenda.getEspecialidade().getNome());
+//		System.out.println("Plano de Saúde: "+ agenda.getPaciente().getPlanoDeSaude().getOperadora() );
 		
 		
 
