@@ -111,7 +111,6 @@ public class AgendaAppFrame extends javax.swing.JFrame {
         sairButton.setBounds(810, 100, 77, 50);
 
         HomeButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        HomeButton.setForeground(new java.awt.Color(0, 0, 255));
         HomeButton.setText("HOME");
         HomeButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +125,7 @@ public class AgendaAppFrame extends javax.swing.JFrame {
         PanelHome.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Swis721 Blk BT", 1, 55)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel2.setForeground(new java.awt.Color(51, 153, 255));
         jLabel2.setText("CL");
         PanelHome.add(jLabel2);
         jLabel2.setBounds(40, 50, 120, 60);
@@ -151,14 +150,14 @@ public class AgendaAppFrame extends javax.swing.JFrame {
         PanelHome.add(jLabel6);
         jLabel6.setBounds(650, 260, 90, 16);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         PanelHome.add(jPanel1);
         jPanel1.setBounds(0, 150, 870, 10);
 
         getContentPane().add(PanelHome);
         PanelHome.setBounds(10, 170, 873, 340);
 
-        headerPanel.setBackground(new java.awt.Color(255, 150, 76));
+        headerPanel.setBackground(new java.awt.Color(51, 153, 255));
         headerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         headerPanel.setLayout(null);
 
@@ -182,12 +181,12 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_agendaButtonActionPerformed
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         especialidadesButton.setBackground(new java.awt.Color(255,255,255));
-        HomeButton.setBackground(new java.awt.Color(255,150,76));
+        HomeButton.setBackground(new java.awt.Color(51,153,255));
         PanelHome.setVisible(true);
         especialidadesPanel.setVisible(false);
         
@@ -198,7 +197,7 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_medicosButtonActionPerformed
 
     private void especialidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especialidadesButtonActionPerformed
-        especialidadesButton.setBackground(new java.awt.Color(255,150,76));
+        especialidadesButton.setBackground(new java.awt.Color(51,153,255));
         HomeButton.setBackground(new java.awt.Color(255,255,255));
         PanelHome.setVisible(false);
         especialidadesPanel.setVisible(true);
