@@ -181,7 +181,7 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_agendaButtonActionPerformed
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
-                // TODO add your handling code here:
+    dispose();                // TODO add your handling code here:
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
