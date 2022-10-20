@@ -8,20 +8,23 @@ public class PlanoDeSaude {
 	private String categoria;
 	private String numero;
 	private LocalDate validade;
-	private static int quantidade;
+        private static int contador = 99;
+        private Integer codigo ;
 	
 	// CRIAÇÃO DOS MÉTODOS DA CLASSE PLANO DE SAÚDE \\
 	
-	public PlanoDeSaude(String operadora) {
+	public PlanoDeSaude(String operadora, String categoria) {
 		this.operadora = operadora;
-		this.quantidade++;
+                this.categoria = categoria;
+		gerarCodigo();
 	}
 	
 	public PlanoDeSaude() {
-		this.quantidade++;
+		gerarCodigo();
 		
 		
 	}
+        
 
 	public void setOperadora(String operadora) {
 		this.operadora = operadora;
@@ -59,9 +62,21 @@ public class PlanoDeSaude {
 
 	public LocalDate getvalidade() {
 		return validade;
-	}
-	public static int getQuantidade() {
-		return quantidade;
-	}
+        }
+        
+        public static int getContador() {
+        return contador;
+    }
 
+        public Integer getCodigo() {
+          return codigo;
+        }
+
+        public void setCodigo(Integer codigo) {
+            this.codigo = codigo;
+        }
+        private void gerarCodigo(){
+        this.contador++;
+        this.codigo = contador;
+    }
 }

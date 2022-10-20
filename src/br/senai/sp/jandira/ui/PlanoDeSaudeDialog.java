@@ -1,39 +1,41 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.senai.sp.jandira.ui;
 
-import br.senai.sp.jandira.dao.EspecialidadeDAO;
-import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
+import br.senai.sp.jandira.model.PlanoDeSaude;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author 22282191
  */
-public class EspecialidadesDialog extends javax.swing.JDialog {
-    
-    private Especialidade especialidade;
+public class PlanoDeSaudeDialog extends javax.swing.JDialog {
+    private PlanoDeSaude planoDeSaude;
     private OperacaoEnum operacao;
-    
-    public EspecialidadesDialog(java.awt.Frame parent, boolean modal,
-            Especialidade e, 
-            OperacaoEnum operacao) {
-        
+
+    public PlanoDeSaudeDialog(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal,
+            PlanoDeSaude p, 
+            OperacaoEnum operacao) {
         
-        especialidade = e;
+        super(parent,modal);
+        initComponents();
+        planoDeSaude = p;
         preencherFormulario();
         
         this.operacao = operacao;
         preencherTitulo();
         
     }
-    
-    public EspecialidadesDialog(java.awt.Frame parent, boolean modal,OperacaoEnum operacao) {
+    public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal,OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
         this.operacao = operacao;
@@ -42,22 +44,41 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         
         
     }
+    
+    
     private void preencherFormulario(){
         
-        jTextFieldCodigo.setText(especialidade.getCodigo().toString());
-        jTextFieldNome.setText(especialidade.getNome());
-        jTextFielddescricao.setText(especialidade.getDescricao());
+        jTextFieldCodigo.setText(planoDeSaude.getCodigo().toString());
+        jTextFieldPlano.setText(planoDeSaude.getOperadora());
+        jTextFieldcategoria.setText(planoDeSaude.getCategoria());
         
     }
     
     private void preencherTitulo(){
-        jLabelTitulo.setText("Especialidades - " + operacao );
+        jLabelTitulo.setText("Planos de Saúde - " + operacao );
         
       
 
     }
     
+    private void adicionar(){
+        PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
+        novoPlanoDeSaude.setOperadora(jTextFieldPlano.getText());
+        novoPlanoDeSaude.setCategoria(jTextFieldcategoria.getText());
+        PlanoDeSaudeDAO.gravar(novoPlanoDeSaude);
+        JOptionPane.showMessageDialog(this, "Plano de saúde gravado com sucesso",
+                "Especialidade", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+    }
     
+    private void editar(){
+        planoDeSaude.setOperadora(jTextFieldPlano.getText());
+        planoDeSaude.setCategoria(jTextFieldcategoria.getText());
+        PlanoDeSaudeDAO.atualizar(planoDeSaude);
+        JOptionPane.showMessageDialog(this,"Atualizada com sucesso","Planos de Saúde",JOptionPane.INFORMATION_MESSAGE,null);
+        dispose();
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,17 +88,16 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         LabelCodigo = new javax.swing.JLabel();
         jTextFieldCodigo = new javax.swing.JTextField();
-        descricao = new javax.swing.JLabel();
-        jTextFielddescricao = new javax.swing.JTextField();
-        jLabelNomedaEspecialidade = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
+        categoria = new javax.swing.JLabel();
+        jTextFieldcategoria = new javax.swing.JTextField();
+        jLabelNomedoPlano = new javax.swing.JLabel();
+        jTextFieldPlano = new javax.swing.JTextField();
         jButtonCancelar = new javax.swing.JButton();
         jButtonsalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(785, 500));
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setSize(new java.awt.Dimension(740, 380));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
@@ -86,7 +106,8 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
 
         jLabelTitulo.setFont(new java.awt.Font("Franklin Gothic Heavy", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Especialidades - ADICIONAR");
+        jLabelTitulo.setText("Plano de Saúde - ADICIONAR");
+        jLabelTitulo.setPreferredSize(new java.awt.Dimension(740, 310));
         jPanel1.add(jLabelTitulo);
         jLabelTitulo.setBounds(40, 30, 370, 40);
 
@@ -106,28 +127,28 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         jPanel2.add(jTextFieldCodigo);
         jTextFieldCodigo.setBounds(40, 70, 80, 30);
 
-        descricao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        descricao.setText("Descrição da especialidade:");
-        jPanel2.add(descricao);
-        descricao.setBounds(40, 170, 150, 16);
+        categoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        categoria.setText("Categoria:");
+        jPanel2.add(categoria);
+        categoria.setBounds(40, 170, 70, 16);
 
-        jTextFielddescricao.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jTextFielddescricao.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldcategoria.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jTextFieldcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFielddescricaoActionPerformed(evt);
+                jTextFieldcategoriaActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFielddescricao);
-        jTextFielddescricao.setBounds(40, 190, 290, 30);
+        jPanel2.add(jTextFieldcategoria);
+        jTextFieldcategoria.setBounds(40, 190, 290, 30);
 
-        jLabelNomedaEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabelNomedaEspecialidade.setText("Nome da especialidade:");
-        jPanel2.add(jLabelNomedaEspecialidade);
-        jLabelNomedaEspecialidade.setBounds(40, 110, 140, 16);
+        jLabelNomedoPlano.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelNomedoPlano.setText("Plano de Saúde:");
+        jPanel2.add(jLabelNomedoPlano);
+        jLabelNomedoPlano.setBounds(40, 110, 140, 16);
 
-        jTextFieldNome.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jPanel2.add(jTextFieldNome);
-        jTextFieldNome.setBounds(40, 130, 170, 30);
+        jTextFieldPlano.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jPanel2.add(jTextFieldPlano);
+        jTextFieldPlano.setBounds(40, 130, 170, 30);
 
         jButtonCancelar.setBackground(new java.awt.Color(255, 83, 89));
         jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -164,9 +185,13 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 100, 740, 310);
 
-        pack();
+        setSize(new java.awt.Dimension(784, 485));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldcategoriaActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();
@@ -176,51 +201,26 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         if(operacao == OperacaoEnum.ADICIONAR){
             adicionar();
         }else{editar();
-            
+
         }
         dispose();
-        
+
     }//GEN-LAST:event_jButtonsalvarActionPerformed
 
-    private void adicionar(){
-        Especialidade novaespecialidade = new Especialidade();
-        novaespecialidade.setNome(jTextFieldNome.getText());
-        novaespecialidade.setDescricao(jTextFielddescricao.getText());
-        EspecialidadeDAO.gravar(novaespecialidade);
-        JOptionPane.showMessageDialog(this, "Especialidade gravada com sucesso",
-                "Especialidade", JOptionPane.INFORMATION_MESSAGE);
-        dispose();
-    }
-    
-    private void editar(){
-        especialidade.setNome(jTextFieldNome.getText());
-        especialidade.setDescricao(jTextFielddescricao.getText());
-        EspecialidadeDAO.atualizar(especialidade);
-        JOptionPane.showMessageDialog(this,"Atualizada com sucesso","Especialidades",JOptionPane.INFORMATION_MESSAGE,null);
-        dispose();
-        
-    }
-    
-    
-    
-    private void jTextFielddescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFielddescricaoActionPerformed
-
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelCodigo;
-    private javax.swing.JLabel descricao;
+    private javax.swing.JLabel categoria;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonsalvar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelNomedaEspecialidade;
+    private javax.swing.JLabel jLabelNomedoPlano;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFielddescricao;
+    private javax.swing.JTextField jTextFieldPlano;
+    private javax.swing.JTextField jTextFieldcategoria;
     // End of variables declaration//GEN-END:variables
 }

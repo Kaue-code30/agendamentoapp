@@ -2,9 +2,12 @@
 
 package br.senai.sp.jandira.ui;
 
+
+
 public class AgendaAppFrame extends javax.swing.JFrame {
     
     private EspecialidadesPanel especialidadesPanel;
+    private PlanoDeSaudePanel planosDeSaudePanel;
     
     private final int Pos_x = 10;
     private final int Pos_y = 170;
@@ -80,6 +83,11 @@ public class AgendaAppFrame extends javax.swing.JFrame {
         planoDeSaudeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/ui/8530567_id_badge_icon.png"))); // NOI18N
         planoDeSaudeButton.setToolTipText("Planos de Saúde");
         planoDeSaudeButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        planoDeSaudeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                planoDeSaudeButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(planoDeSaudeButton);
         planoDeSaudeButton.setBounds(360, 100, 60, 50);
 
@@ -162,12 +170,12 @@ public class AgendaAppFrame extends javax.swing.JFrame {
         headerPanel.setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(0, 102, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Heavy", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Clínica Lima");
         jLabel1.setToolTipText("");
         headerPanel.add(jLabel1);
-        jLabel1.setBounds(10, 10, 200, 58);
+        jLabel1.setBounds(10, 10, 330, 58);
 
         getContentPane().add(headerPanel);
         headerPanel.setBounds(0, 0, 900, 80);
@@ -187,8 +195,10 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         especialidadesButton.setBackground(new java.awt.Color(255,255,255));
         HomeButton.setBackground(new java.awt.Color(51,153,255));
+        planoDeSaudeButton.setBackground(new java.awt.Color(255,255,255));
         PanelHome.setVisible(true);
         especialidadesPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
         
     }//GEN-LAST:event_HomeButtonActionPerformed
         
@@ -199,10 +209,22 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     private void especialidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especialidadesButtonActionPerformed
         especialidadesButton.setBackground(new java.awt.Color(51,153,255));
         HomeButton.setBackground(new java.awt.Color(255,255,255));
+        planoDeSaudeButton.setBackground(new java.awt.Color(255,255,255));
         PanelHome.setVisible(false);
         especialidadesPanel.setVisible(true);
+        planosDeSaudePanel.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_especialidadesButtonActionPerformed
+
+    private void planoDeSaudeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planoDeSaudeButtonActionPerformed
+       planoDeSaudeButton.setBackground(new java.awt.Color(51,153,255));
+       HomeButton.setBackground(new java.awt.Color(255,255,255));
+       especialidadesButton.setBackground(new java.awt.Color(255,255,255));
+       especialidadesPanel.setVisible(false);
+       PanelHome.setVisible(false);
+       planosDeSaudePanel.setVisible(true);
+       
+    }//GEN-LAST:event_planoDeSaudeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,9 +251,14 @@ public class AgendaAppFrame extends javax.swing.JFrame {
 
     private void initPanels() {
         especialidadesPanel = new EspecialidadesPanel();
+        planosDeSaudePanel = new PlanoDeSaudePanel();
         especialidadesPanel.setBounds(Pos_x, Pos_y, Pos_w, Pos_h);
+        planosDeSaudePanel.setBounds(Pos_x, Pos_y, Pos_w, Pos_h);
         getContentPane().add(especialidadesPanel);
+        getContentPane().add(planosDeSaudePanel);
         especialidadesPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
+        
         
         
     }
