@@ -7,6 +7,8 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,8 +17,12 @@ import javax.swing.JOptionPane;
  * @author 22282191
  */
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
+    
+    
     private PlanoDeSaude planoDeSaude;
     private OperacaoEnum operacao;
+    
+    
 
     public PlanoDeSaudeDialog(JFrame parent, boolean modal) {
         super(parent, modal);
@@ -51,6 +57,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jTextFieldCodigo.setText(planoDeSaude.getCodigo().toString());
         jTextFieldPlano.setText(planoDeSaude.getOperadora());
         jTextFieldcategoria.setText(planoDeSaude.getCategoria());
+        DateTimeFormatter barra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        jTextFieldNumero.setText(planoDeSaude.getNumero());
+        jTextFieldvalidade.setText(planoDeSaude.getvalidade().format(barra));
         
     }
     
@@ -65,6 +74,8 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
         novoPlanoDeSaude.setOperadora(jTextFieldPlano.getText());
         novoPlanoDeSaude.setCategoria(jTextFieldcategoria.getText());
+        novoPlanoDeSaude.setValidade(LocalDate.parse(jTextFieldvalidade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        novoPlanoDeSaude.setNumero(jTextFieldNumero.getText());
         PlanoDeSaudeDAO.gravar(novoPlanoDeSaude);
         JOptionPane.showMessageDialog(this, "Plano de saúde gravado com sucesso",
                 "Especialidade", JOptionPane.INFORMATION_MESSAGE);
@@ -74,6 +85,8 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private void editar(){
         planoDeSaude.setOperadora(jTextFieldPlano.getText());
         planoDeSaude.setCategoria(jTextFieldcategoria.getText());
+        planoDeSaude.setValidade(LocalDate.parse(jTextFieldvalidade.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        planoDeSaude.setNumero(jTextFieldNumero.getText());
         PlanoDeSaudeDAO.atualizar(planoDeSaude);
         JOptionPane.showMessageDialog(this,"Atualizada com sucesso","Planos de Saúde",JOptionPane.INFORMATION_MESSAGE,null);
         dispose();
@@ -95,6 +108,10 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jButtonCancelar = new javax.swing.JButton();
         jButtonsalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldvalidade = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldNumero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setSize(new java.awt.Dimension(740, 380));
@@ -120,17 +137,17 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         LabelCodigo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCodigo.setText("Código:");
         jPanel2.add(LabelCodigo);
-        LabelCodigo.setBounds(40, 50, 50, 16);
+        LabelCodigo.setBounds(40, 30, 50, 16);
 
         jTextFieldCodigo.setEditable(false);
         jTextFieldCodigo.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jPanel2.add(jTextFieldCodigo);
-        jTextFieldCodigo.setBounds(40, 70, 80, 30);
+        jTextFieldCodigo.setBounds(40, 50, 80, 30);
 
         categoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         categoria.setText("Categoria:");
         jPanel2.add(categoria);
-        categoria.setBounds(40, 170, 70, 16);
+        categoria.setBounds(40, 130, 70, 16);
 
         jTextFieldcategoria.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jTextFieldcategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -139,16 +156,16 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(jTextFieldcategoria);
-        jTextFieldcategoria.setBounds(40, 190, 290, 30);
+        jTextFieldcategoria.setBounds(40, 150, 290, 30);
 
         jLabelNomedoPlano.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNomedoPlano.setText("Plano de Saúde:");
         jPanel2.add(jLabelNomedoPlano);
-        jLabelNomedoPlano.setBounds(40, 110, 140, 16);
+        jLabelNomedoPlano.setBounds(40, 80, 140, 16);
 
         jTextFieldPlano.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jPanel2.add(jTextFieldPlano);
-        jTextFieldPlano.setBounds(40, 130, 170, 30);
+        jTextFieldPlano.setBounds(40, 100, 170, 30);
 
         jButtonCancelar.setBackground(new java.awt.Color(255, 83, 89));
         jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -182,6 +199,34 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(580, 120, 30, 30);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Validade");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(40, 180, 60, 16);
+
+        jTextFieldvalidade.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jTextFieldvalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldvalidadeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextFieldvalidade);
+        jTextFieldvalidade.setBounds(40, 200, 170, 22);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Número");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(40, 230, 50, 16);
+
+        jTextFieldNumero.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED))));
+        jTextFieldNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumeroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextFieldNumero);
+        jTextFieldNumero.setBounds(40, 250, 170, 22);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 100, 740, 310);
 
@@ -201,11 +246,20 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         if(operacao == OperacaoEnum.ADICIONAR){
             adicionar();
         }else{editar();
-
+            
         }
+        
         dispose();
 
     }//GEN-LAST:event_jButtonsalvarActionPerformed
+
+    private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumeroActionPerformed
+
+    private void jTextFieldvalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldvalidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldvalidadeActionPerformed
 
    
 
@@ -215,12 +269,16 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonsalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelNomedoPlano;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldNumero;
     private javax.swing.JTextField jTextFieldPlano;
     private javax.swing.JTextField jTextFieldcategoria;
+    private javax.swing.JTextField jTextFieldvalidade;
     // End of variables declaration//GEN-END:variables
 }

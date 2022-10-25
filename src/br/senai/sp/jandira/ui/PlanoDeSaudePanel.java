@@ -5,6 +5,7 @@ import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -28,6 +29,10 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
     
     private void editarplanoDeSaude(){
         PlanoDeSaude planoDeSaude = PlanoDeSaudeDAO.getPlanoDeSaude(getCodigo());
+        PlanoDeSaudeDialog planoDeSaudeDialog
+                = new PlanoDeSaudeDialog(null, true,planoDeSaude,OperacaoEnum.EDITAR);
+        
+        planoDeSaudeDialog.setVisible(true);
         
         preencherTabela();
     }
@@ -148,10 +153,11 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
         tablePlano.getTableHeader().setReorderingAllowed(false);
         tablePlano.setDefaultEditor(Object.class, null);
         tablePlano.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablePlano.getColumnModel().getColumn(0).setPreferredWidth(200);
+        tablePlano.getColumnModel().getColumn(0).setPreferredWidth(100);
         tablePlano.getColumnModel().getColumn(1).setPreferredWidth(200);
         tablePlano.getColumnModel().getColumn(2).setPreferredWidth(210);
         tablePlano.getColumnModel().getColumn(3).setPreferredWidth(210);
+        tablePlano.getColumnModel().getColumn(4).setPreferredWidth(100);
     }
     
     

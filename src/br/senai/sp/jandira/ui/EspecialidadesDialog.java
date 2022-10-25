@@ -99,17 +99,17 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         LabelCodigo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCodigo.setText("Código:");
         jPanel2.add(LabelCodigo);
-        LabelCodigo.setBounds(40, 50, 50, 16);
+        LabelCodigo.setBounds(40, 30, 50, 16);
 
         jTextFieldCodigo.setEditable(false);
         jTextFieldCodigo.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jPanel2.add(jTextFieldCodigo);
-        jTextFieldCodigo.setBounds(40, 70, 80, 30);
+        jTextFieldCodigo.setBounds(40, 50, 80, 30);
 
         descricao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         descricao.setText("Descrição da especialidade:");
         jPanel2.add(descricao);
-        descricao.setBounds(40, 170, 150, 16);
+        descricao.setBounds(40, 150, 150, 16);
 
         jTextFielddescricao.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jTextFielddescricao.addActionListener(new java.awt.event.ActionListener() {
@@ -118,16 +118,21 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(jTextFielddescricao);
-        jTextFielddescricao.setBounds(40, 190, 290, 30);
+        jTextFielddescricao.setBounds(40, 170, 290, 30);
 
         jLabelNomedaEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNomedaEspecialidade.setText("Nome da especialidade:");
         jPanel2.add(jLabelNomedaEspecialidade);
-        jLabelNomedaEspecialidade.setBounds(40, 110, 140, 16);
+        jLabelNomedaEspecialidade.setBounds(40, 90, 140, 16);
 
         jTextFieldNome.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextFieldNome);
-        jTextFieldNome.setBounds(40, 130, 170, 30);
+        jTextFieldNome.setBounds(40, 110, 170, 30);
 
         jButtonCancelar.setBackground(new java.awt.Color(255, 83, 89));
         jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -181,11 +186,12 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         dispose();
         
     }//GEN-LAST:event_jButtonsalvarActionPerformed
-
+    
     private void adicionar(){
         Especialidade novaespecialidade = new Especialidade();
-        novaespecialidade.setNome(jTextFieldNome.getText());
+        novaespecialidade.setNome(jTextFieldNome.getText());      
         novaespecialidade.setDescricao(jTextFielddescricao.getText());
+
         EspecialidadeDAO.gravar(novaespecialidade);
         JOptionPane.showMessageDialog(this, "Especialidade gravada com sucesso",
                 "Especialidade", JOptionPane.INFORMATION_MESSAGE);
@@ -195,6 +201,7 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     private void editar(){
         especialidade.setNome(jTextFieldNome.getText());
         especialidade.setDescricao(jTextFielddescricao.getText());
+        
         EspecialidadeDAO.atualizar(especialidade);
         JOptionPane.showMessageDialog(this,"Atualizada com sucesso","Especialidades",JOptionPane.INFORMATION_MESSAGE,null);
         dispose();
@@ -206,6 +213,10 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     private void jTextFielddescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddescricaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFielddescricaoActionPerformed
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     
 

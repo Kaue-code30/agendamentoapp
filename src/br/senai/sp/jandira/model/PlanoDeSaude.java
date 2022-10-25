@@ -1,6 +1,9 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import java.time.Month;
+
+
 
 public class PlanoDeSaude {
 
@@ -13,9 +16,11 @@ public class PlanoDeSaude {
 	
 	// CRIAÇÃO DOS MÉTODOS DA CLASSE PLANO DE SAÚDE \\
 	
-	public PlanoDeSaude(String operadora, String categoria) {
+	public PlanoDeSaude(String operadora, String categoria, LocalDate validade, String numero) {
 		this.operadora = operadora;
                 this.categoria = categoria;
+                this.validade = validade;
+                this.numero = numero;
 		gerarCodigo();
 	}
 	
@@ -57,12 +62,20 @@ public class PlanoDeSaude {
 	// -------------------------------\\
 
 	public void setValidade(LocalDate validade) {
+                
 		this.validade = validade;
+                
 	}
 
-	public LocalDate getvalidade() {
-		return validade;
-        }
+    public LocalDate getvalidade() {
+     return validade;
+    }
+        
+
+     
+        
+
+	
         
         public static int getContador() {
         return contador;
