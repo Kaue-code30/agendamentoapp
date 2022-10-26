@@ -70,6 +70,8 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
     }
     
+    
+    
     private void adicionar(){
         PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
         novoPlanoDeSaude.setOperadora(jTextFieldPlano.getText());
@@ -109,9 +111,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jButtonsalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldvalidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldNumero = new javax.swing.JTextField();
+        jTextFieldvalidade = new javax.swing.JFormattedTextField();
+        jTextFieldNumero = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setSize(new java.awt.Dimension(740, 380));
@@ -204,26 +206,27 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(40, 180, 60, 16);
 
-        jTextFieldvalidade.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jTextFieldvalidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldvalidadeActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextFieldvalidade);
-        jTextFieldvalidade.setBounds(40, 200, 170, 22);
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Número");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(40, 230, 50, 16);
 
+        jTextFieldvalidade.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jTextFieldvalidade.setColumns(8);
+        try {
+            jTextFieldvalidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel2.add(jTextFieldvalidade);
+        jTextFieldvalidade.setBounds(40, 200, 70, 22);
+
         jTextFieldNumero.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED))));
-        jTextFieldNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumeroActionPerformed(evt);
-            }
-        });
+        try {
+            jTextFieldNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jPanel2.add(jTextFieldNumero);
         jTextFieldNumero.setBounds(40, 250, 170, 22);
 
@@ -243,23 +246,22 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsalvarActionPerformed
-        if(operacao == OperacaoEnum.ADICIONAR){
+        CharSequence chart = " ";
+        if(jTextFieldPlano.getText().isEmpty() || jTextFieldcategoria.getText().isEmpty() || jTextFieldNumero.getText().contains(chart) || jTextFieldvalidade.getText().contains(chart) == true ){
+            JOptionPane.showMessageDialog(this, "Por favor preencha todos os campos", "Plano de Saude", 1 );
+            
+       }else{
+            if(operacao == OperacaoEnum.ADICIONAR){
             adicionar();
         }else{editar();
             
         }
         
         dispose();
+        }
+         
 
     }//GEN-LAST:event_jButtonsalvarActionPerformed
-
-    private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumeroActionPerformed
-
-    private void jTextFieldvalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldvalidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldvalidadeActionPerformed
 
    
 
@@ -276,9 +278,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldNumero;
+    private javax.swing.JFormattedTextField jTextFieldNumero;
     private javax.swing.JTextField jTextFieldPlano;
     private javax.swing.JTextField jTextFieldcategoria;
-    private javax.swing.JTextField jTextFieldvalidade;
+    private javax.swing.JFormattedTextField jTextFieldvalidade;
     // End of variables declaration//GEN-END:variables
 }

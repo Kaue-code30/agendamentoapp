@@ -9,10 +9,8 @@ import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 22282191
- */
+
+
 public class EspecialidadesDialog extends javax.swing.JDialog {
     
     private Especialidade especialidade;
@@ -49,6 +47,7 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         jTextFielddescricao.setText(especialidade.getDescricao());
         
     }
+   
     
     private void preencherTitulo(){
         jLabelTitulo.setText("Especialidades - " + operacao );
@@ -178,21 +177,31 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsalvarActionPerformed
-        if(operacao == OperacaoEnum.ADICIONAR){
+       if (jTextFieldNome.getText().isBlank() || jTextFielddescricao.getText().isBlank() == true){
+           JOptionPane.showConfirmDialog(this, "Por favor preencha todos os campos", "Especialidades",JOptionPane.WARNING_MESSAGE,1);
+       }else{     
+        if(operacao == OperacaoEnum.ADICIONAR ){
             adicionar();
-        }else{editar();
-            
+       
         }
-        dispose();
+       
+        else{editar();     
+        }
+           dispose();
+       }
+        
         
     }//GEN-LAST:event_jButtonsalvarActionPerformed
+
+
+    
     
     private void adicionar(){
         Especialidade novaespecialidade = new Especialidade();
         novaespecialidade.setNome(jTextFieldNome.getText());      
         novaespecialidade.setDescricao(jTextFielddescricao.getText());
-
-        EspecialidadeDAO.gravar(novaespecialidade);
+        
+            EspecialidadeDAO.gravar(novaespecialidade);
         JOptionPane.showMessageDialog(this, "Especialidade gravada com sucesso",
                 "Especialidade", JOptionPane.INFORMATION_MESSAGE);
         dispose();
@@ -217,7 +226,8 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
