@@ -1,7 +1,7 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
-import java.time.Month;
+
 
 
 
@@ -25,12 +25,24 @@ public class PlanoDeSaude {
                 this.numero = numero;
 		gerarCodigo();
 	}
+	public PlanoDeSaude(String operadora, String categoria, LocalDate 
+                validade, String numero, Integer codigo) {
+            
+		this.operadora = operadora;
+                this.categoria = categoria;
+                this.validade = validade;
+                this.numero = numero;
+                this.codigo = codigo;
+		this.contador = codigo;
+	}
 	
 	public PlanoDeSaude() {
 		gerarCodigo();
 		
 		
 	}
+        
+       
         
 
 	public void setOperadora(String operadora) {
@@ -93,5 +105,9 @@ public class PlanoDeSaude {
         private void gerarCodigo(){
         this.contador++;
         this.codigo = contador;
+    }
+        
+    public String getPlanoDeSaudeSeparadaPorPontoEVirgula(){
+        return this.codigo + ";" + this.operadora + ";" + this.categoria + ";" + this.validade + ";" + this.numero;
     }
 }

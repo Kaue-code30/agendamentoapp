@@ -2,11 +2,26 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class EspecialidadeDAO {
+    
+   private final static String URL = "C:\\Users\\22282191\\java\\pastinha\\Especialidade.txt"; 
+   private final static Path PATH = Paths.get(URL);
+            
+            
+            
+            
     
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
 
@@ -47,19 +62,49 @@ public class EspecialidadeDAO {
     
     public static void gravar(Especialidade espe){
         especialidades.add(espe);
+        try {
+            BufferedWriter escritor = Files.newBufferedWriter(PATH, 
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            escritor.write(espe.getEspecialidadeSeparadaPorPontoEVirgula());
+            escritor.newLine();
+            escritor.close();
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+        }
+        
+        // Gravar em arquivo \\
         
     }
     
     public static void criarListaDeEspecialidade(){
-        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
-        Especialidade e2 = new Especialidade("Gastro", "Cuida do estomago");
-        Especialidade e3 = new Especialidade("Psicologia", "Cuida da cabeça");
-        Especialidade e4 = new Especialidade("Fisioterapia", "Cuida do corpo");
-    
-        especialidades.add(e1);
-        especialidades.add(e2);
-        especialidades.add(e3);
-        especialidades.add(e4);
+        
+        try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            String linha = leitor.readLine();
+            
+            while(linha != null){
+                // transformar os dados da linha em especialidade 
+                String[]vetor = linha.split(";");
+                Especialidade e = new Especialidade(
+                        vetor[1],
+                        vetor[2],
+                        Integer.valueOf(vetor[0]));
+                
+     
+                // Guardar na lista de especialidades
+                especialidades.add(e);
+                
+                //ler a proxima linha 
+                linha = leitor.readLine();
+                
+            }
+            leitor.close();
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao ler o arquivo");
+        }
+        
+        
   
 }
     public static DefaultTableModel getespecialidadesModel(){

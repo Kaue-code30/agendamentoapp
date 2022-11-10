@@ -8,6 +8,7 @@ public class Especialidade {
     private Integer codigo ;
     private String nome;
     private String descricao;
+    
 
     // Construtor de classes \\
     public Especialidade(String nome) {
@@ -25,6 +26,13 @@ public class Especialidade {
         this.nome = nome;
         this.descricao = descricao;
         gerarCodigo();
+
+    }
+    public Especialidade(String nome, String descricao,Integer codigo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.codigo  = codigo;
+        this.contador = codigo;
 
     }
     
@@ -72,6 +80,9 @@ public class Especialidade {
         this.codigo = codigo;
     }
     
+    public String getEspecialidadeSeparadaPorPontoEVirgula(){
+        return this.codigo + ";" + this.nome + ";" + this.descricao;
+    }
     
     
     

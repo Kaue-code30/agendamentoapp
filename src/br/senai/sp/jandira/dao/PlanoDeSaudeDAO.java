@@ -2,13 +2,24 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO {
+    
+    private final static String URL = "C:\\Users\\22282191\\java\\pastinha\\PlanoDeSaude.txt"; 
+    private final static Path PATH = Paths.get(URL);
     private static ArrayList<PlanoDeSaude> planoDeSaude = new ArrayList<>();
     
     public static ArrayList<PlanoDeSaude> getPlanosDeSaudes() {
@@ -47,21 +58,58 @@ public class PlanoDeSaudeDAO {
     public static void gravar(PlanoDeSaude plano){
         planoDeSaude.add(plano);
         
+        
+        try {
+            BufferedWriter escritor = Files.newBufferedWriter(PATH, 
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            escritor.write(plano.getPlanoDeSaudeSeparadaPorPontoEVirgula());
+            escritor.newLine();
+            escritor.close();
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+        }
+        
+        
+        
     }
     
     
     
     public static void criarListaDePlanosDeSaude(){
-        PlanoDeSaude e1 = new PlanoDeSaude("Bradesco","Premium",LocalDate.of(2000, 5, 10),"222-222");
-        PlanoDeSaude e2 = new PlanoDeSaude("Amil","Premium",LocalDate.of(2000, 6, 10),"333-333");
-        PlanoDeSaude e3 = new PlanoDeSaude("Azul","Premium",LocalDate.of(2000, 4, 10),"444-444");
-        PlanoDeSaude e4 = new PlanoDeSaude("Notredame","Premium",LocalDate.of(2000, 8, 10),"555-555");
+        
+         try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            String linha = leitor.readLine();
+            
+            while(linha != null){
+                // transformar os dados da linha em especialidade
+                //DateTimeFormatter barra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String[]vetor = linha.split(";");
+               
+                String[] data = vetor[3].split("-");
+                       
+                PlanoDeSaude e;
+                e = new PlanoDeSaude(
+                        vetor[1],
+                        vetor[2],
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                        vetor[4],
+                        Integer.valueOf(vetor[0]));
+                
      
-    
-        planoDeSaude.add(e1);
-        planoDeSaude.add(e2);
-        planoDeSaude.add(e3);
-        planoDeSaude.add(e4);
+                // Guardar na lista de especialidades
+                planoDeSaude.add(e);
+                
+                //ler a proxima linha 
+                linha = leitor.readLine();
+                
+            }
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao ler o arquivo");
+        }
+        
+        
         
         
   
