@@ -16,7 +16,9 @@ public class PlanoDeSaude {
 	
 	// CRIAÇÃO DOS MÉTODOS DA CLASSE PLANO DE SAÚDE \\
 	
-	public PlanoDeSaude(String operadora, String categoria, LocalDate validade, String numero) {
+	public PlanoDeSaude(String operadora, String categoria, LocalDate 
+                validade, String numero) {
+            
 		this.operadora = operadora;
                 this.categoria = categoria;
                 this.validade = validade;
