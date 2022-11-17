@@ -122,13 +122,14 @@ public class MedicoDAO {
                 // transformar os dados da linha em medidcos
                 
                 String[] vetor = linha.split(";");
-                Medico m = new Medico()
+                Medico m = new Medico(Integer.valueOf
+                        (vetor[0]),
                         vetor[1],
                         vetor[2],
-                        Integer.valueOf(vetor[0]));
+                        vetor[3]);
 
                 // Guardar na lista de especialidades
-                medicos.add(e);
+                medicos.add(m);
 
                 //ler a proxima linha 
                 linha = leitor.readLine();
