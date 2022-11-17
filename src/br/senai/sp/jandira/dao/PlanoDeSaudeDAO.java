@@ -4,6 +4,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +20,10 @@ import javax.swing.table.DefaultTableModel;
 public class PlanoDeSaudeDAO {
     
     private final static String URL = "C:\\Users\\22282191\\java\\pastinha\\PlanoDeSaude.txt"; 
+    private final static String URL_TEMP = "C:\\Users\\22282191\\java\\pastinha\\PanoDeSaude-temp.txt";
     private final static Path PATH = Paths.get(URL);
+    private final static Path PATH_TEMP = Paths.get(URL_TEMP);
+
     private static ArrayList<PlanoDeSaude> planoDeSaude = new ArrayList<>();
     
     public static ArrayList<PlanoDeSaude> getPlanosDeSaudes() {
@@ -37,12 +41,13 @@ public class PlanoDeSaudeDAO {
     }
      public static void excluir(Integer codigo){
         for (PlanoDeSaude e : planoDeSaude){
-            if (codigo == e.getCodigo()){
+            if (e.getCodigo().equals(codigo)){
                 planoDeSaude.remove(e);
                 break;
             }
             
         }
+        autualizarArquivo();
         
     }
     
@@ -53,6 +58,41 @@ public class PlanoDeSaudeDAO {
               planoDeSaude.set(posicao, correta);
             }
         }
+        autualizarArquivo();
+    }
+    
+    private static void autualizarArquivo() {
+        // Passo 01 - Criar uma respresentação dos arquivos que serão manipulados 
+        File arquivoAtual = new File(URL);
+        File arquivoTemp = new File(URL_TEMP);
+
+        try {
+            // Criar o aquivo temporario 
+            arquivoTemp.createNewFile();
+
+            // Abrir para a escrita
+            BufferedWriter bwTemp
+                    = Files.newBufferedWriter(PATH_TEMP,
+                            StandardOpenOption.APPEND,
+                            StandardOpenOption.WRITE);
+
+            // Iterar na lista para adicionar as especialidades
+            // no arquivo temporario, exceto o registro que irá ser excluido
+            for(PlanoDeSaude e : planoDeSaude){
+                bwTemp.write(e.getPlanoDeSaudeSeparadaPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            
+            bwTemp.close();
+            
+            //excluir o arquivo atual 
+            arquivoAtual.delete();
+            
+            arquivoTemp.renameTo(arquivoAtual);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
     
     public static void gravar(PlanoDeSaude plano){
