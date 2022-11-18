@@ -6,6 +6,7 @@ package br.senai.sp.jandira.ui;
 
 public class AgendaAppFrame extends javax.swing.JFrame {
     
+    private MedicoPanel medicoPanel;
     private EspecialidadesPanel especialidadesPanel;
     private PlanoDeSaudePanel planosDeSaudePanel;
     
@@ -203,7 +204,12 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HomeButtonActionPerformed
         
     private void medicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicosButtonActionPerformed
-        // TODO add your handling code here:
+        medicoPanel.setVisible(true);
+        PanelHome.setVisible(false);
+        especialidadesPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
+       
+       
     }//GEN-LAST:event_medicosButtonActionPerformed
 
     private void especialidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especialidadesButtonActionPerformed
