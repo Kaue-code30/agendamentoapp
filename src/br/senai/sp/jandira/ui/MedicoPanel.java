@@ -79,8 +79,9 @@ public class MedicoPanel extends javax.swing.JPanel {
         tableMedicos.getColumnModel().getColumn(0).setPreferredWidth(100);
         tableMedicos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tableMedicos.getColumnModel().getColumn(2).setPreferredWidth(210);
-        tableMedicos.getColumnModel().getColumn(3).setPreferredWidth(210);
-        tableMedicos.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tableMedicos.getColumnModel().getColumn(3).setPreferredWidth(310);
+        
+        
     }
 
     @SuppressWarnings("unchecked")

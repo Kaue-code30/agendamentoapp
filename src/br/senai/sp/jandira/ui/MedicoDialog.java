@@ -112,7 +112,6 @@ public class MedicoDialog extends javax.swing.JDialog {
         descricao = new javax.swing.JLabel();
         jTextFielNomeDoMedico = new javax.swing.JTextField();
         jLabelCRM = new javax.swing.JLabel();
-        jTextFieldCrm = new javax.swing.JTextField();
         jButtonCancelar = new javax.swing.JButton();
         jButtonsalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -123,6 +122,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jTextFieldCrm = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -167,15 +167,6 @@ public class MedicoDialog extends javax.swing.JDialog {
         jLabelCRM.setText("CRM:");
         jPanel2.add(jLabelCRM);
         jLabelCRM.setBounds(130, 30, 40, 16);
-
-        jTextFieldCrm.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jTextFieldCrm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCrmActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextFieldCrm);
-        jTextFieldCrm.setBounds(130, 50, 110, 30);
 
         jButtonCancelar.setBackground(new java.awt.Color(255, 83, 89));
         jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -230,7 +221,7 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         jFormattedTextFieldTelefone.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         try {
-            jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-#####")));
+            jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -259,6 +250,15 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel2.add(jScrollPane2);
         jScrollPane2.setBounds(210, 120, 120, 150);
 
+        jTextFieldCrm.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        try {
+            jTextFieldCrm.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel2.add(jTextFieldCrm);
+        jTextFieldCrm.setBounds(130, 50, 110, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,10 +286,6 @@ public class MedicoDialog extends javax.swing.JDialog {
     private void jTextFielNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielNomeDoMedicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFielNomeDoMedicoActionPerformed
-
-    private void jTextFieldCrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCrmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCrmActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();
@@ -380,6 +376,6 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFielNomeDoMedico;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldCrm;
+    private javax.swing.JFormattedTextField jTextFieldCrm;
     // End of variables declaration//GEN-END:variables
 }

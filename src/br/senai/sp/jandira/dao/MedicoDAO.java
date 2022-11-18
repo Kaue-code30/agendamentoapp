@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MedicoDAO {
     
-    private final static String URL = "C:\\Users\\22282191\\java\\pastinha\\Medicos.txt";
+    private final static String URL = "C:\\Users\\22282191\\java\\pastinha\\Medico.txt";
     private final static String URL_TEMP = "C:\\Users\\22282191\\java\\pastinha\\Medico-temp.txt";
     private final static Path PATH = Paths.get(URL);
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
@@ -147,7 +147,7 @@ public class MedicoDAO {
         String[] titulos = {"CÓDIGO", "CRM", "NOME DO MÉDICO","TELEFONE"};
 
         int i = 0;
-        String[][] dados = new String[medicos.size()][3];
+        String[][] dados = new String[medicos.size()][4];
         for (Medico e : medicos) {
             dados[i][0] = e.getCodigo().toString();
             dados[i][1] = e.getCrm();

@@ -258,12 +258,21 @@ public class AgendaAppFrame extends javax.swing.JFrame {
     private void initPanels() {
         especialidadesPanel = new EspecialidadesPanel();
         planosDeSaudePanel = new PlanoDeSaudePanel();
+        medicoPanel = new MedicoPanel();
+        
         especialidadesPanel.setBounds(Pos_x, Pos_y, Pos_w, Pos_h);
         planosDeSaudePanel.setBounds(Pos_x, Pos_y, Pos_w, Pos_h);
+        medicoPanel.setBounds(Pos_x, Pos_y, Pos_w, Pos_h);
+        
         getContentPane().add(especialidadesPanel);
         getContentPane().add(planosDeSaudePanel);
+        getContentPane().add(medicoPanel);
+        
+        
         especialidadesPanel.setVisible(false);
         planosDeSaudePanel.setVisible(false);
+        medicoPanel.setVisible(false);
+        
         
         
         

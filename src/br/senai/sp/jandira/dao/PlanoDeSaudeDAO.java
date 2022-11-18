@@ -32,7 +32,7 @@ public class PlanoDeSaudeDAO {
     
     public static PlanoDeSaude getPlanoDeSaude(Integer codigo){
         for(PlanoDeSaude p : planoDeSaude){
-           if (codigo == p.getCodigo()){
+           if ( p.getCodigo().equals(codigo)){
                return p; 
            }   
         } 
