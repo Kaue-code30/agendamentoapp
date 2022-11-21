@@ -41,6 +41,8 @@ public class MedicoPanel extends javax.swing.JPanel {
         
         medicoDialog.setVisible(true);
         preencherTabela();
+        
+       
     }
     
     
@@ -68,9 +70,11 @@ public class MedicoPanel extends javax.swing.JPanel {
      private void preencherTabela() {
         
         tableMedicos.setModel(MedicoDAO.getmedicosModel());
+        
         ajustarTabela();
 
     }
+     
     
     private void ajustarTabela(){
         tableMedicos.getTableHeader().setReorderingAllowed(false);

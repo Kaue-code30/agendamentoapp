@@ -144,10 +144,10 @@ public class EspecialidadeDAO {
 
         int i = 0;
         String[][] dados = new String[especialidades.size()][3];
-        for (Especialidade e : especialidades) {
-            dados[i][0] = e.getCodigo().toString();
-            dados[i][1] = e.getNome();
-            dados[i][2] = e.getDescricao();
+        for (Especialidade esp : especialidades) {
+            dados[i][0] = esp.getCodigo().toString();
+            dados[i][1] = esp.getNome();
+            dados[i][2] = esp.getDescricao();
             i++;
 
         }
@@ -155,6 +155,19 @@ public class EspecialidadeDAO {
         DefaultTableModel model = new DefaultTableModel(dados, titulos);
         return model;
 
+    }
+    
+    
+    public static DefaultTableModel getEspecialidadesMoldel(){
+        String[] titulos = {"Nome da Especialidade"};
+        int i = 0;
+        String[][] dados = new String[especialidades.size()][1];
+        for (Especialidade e : especialidades){
+            dados[i][0] = e.getNome();
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(dados, titulos);
+        return model;
     }
 
 }

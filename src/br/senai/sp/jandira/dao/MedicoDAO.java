@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +26,8 @@ public class MedicoDAO {
     private final static Path PATH = Paths.get(URL);
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
     private static ArrayList<Medico> medicos = new ArrayList<>();
+    private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    
     
     public static ArrayList<Medico> getmedicos() {
         return medicos;
@@ -39,6 +43,19 @@ public class MedicoDAO {
         return null;
 
     }
+     public static Especialidade getEspecialidades(Integer codigo){
+      for(Especialidade espe : especialidades){
+            if(espe.getCodigo().equals(codigo)){
+                return espe;
+                
+            }
+        }
+        return null;
+        
+    }
+    
+     
+     
      public static void excluir(Integer codigo) {
 
         for (Medico e : medicos) {
@@ -120,13 +137,19 @@ public class MedicoDAO {
 
             while (linha != null) {
                 // transformar os dados da linha em medidcos
-                
-                String[] vetor = linha.split(";");
-                Medico m = new Medico(Integer.valueOf
-                        (vetor[0]),
-                        vetor[1],
+               
+                String[] vetor = linha.split(";"); 
+                String[] data = vetor[5].split("-");
+                Medico m = new Medico(
+                        Integer.valueOf(vetor[0]),
                         vetor[2],
-                        vetor[3]);
+                        vetor[1],
+                        vetor[3],
+                        vetor[4],
+                        LocalDate.of(Integer.parseInt(data[0]),
+                                Integer.parseInt(data[1]), 
+                                Integer.parseInt(data[2])));
+                        
 
                 // Guardar na lista de especialidades
                 medicos.add(m);
@@ -153,6 +176,7 @@ public class MedicoDAO {
             dados[i][1] = e.getCrm();
             dados[i][2] = e.getNome();
             dados[i][3] = e.getTelefone();
+            
             i++;
 
         }

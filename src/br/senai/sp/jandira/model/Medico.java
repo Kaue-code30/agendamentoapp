@@ -18,8 +18,7 @@ public class Medico {
     // Criação dos Construtores \\
     
     public Medico(Integer codigo ,String nome, String crm, String telefone,
-            String email,LocalDate dataDeNascimento,
-            Especialidade[] especialidades){
+            String email,LocalDate dataDeNascimento){
         
         this.codigo = codigo;
         this.contador = codigo;
@@ -28,8 +27,8 @@ public class Medico {
         this.email = email;
         this.dataDeNascimento = dataDeNascimento;
         this.telefone = telefone;
-        this.especialidades = especialidades;
-        gerarCodigo();
+        
+        
     } 
     
     public Medico(){
